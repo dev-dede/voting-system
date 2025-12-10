@@ -12,46 +12,47 @@ const options = [
   },
 ];
 
-function getTotalVotes(){
-    return options.reduce((total, option) => total + option.votes, 0);
+function getTotalVotes() {
+  return options.reduce((total, option) => total + option.votes, 0);
 }
 
-function displayResult(){
-    const result = document.getElementById("result");
-    result.innerHTML = "";
-    options.forEach((option) => {
-        const totalVotes = getTotalVotes();
-        const percentage = totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
-        const barWidth = percentage > 0 ? `${percentage}%` : "0%";
+function displayResult() {
+  const result = document.getElementById("result");
+  result.innerHTML = "";
+  options.forEach((option) => {
+    const totalVotes = getTotalVotes();
+    const percentage =
+      totalVotes > 0 ? ((option.votes / totalVotes) * 100).toFixed(2) : 0;
+    const barWidth = percentage > 0 ? `${percentage}%` : "0%";
 
-        const optionResult = document.createElement("div");
-        optionResult.className = "option-result";
-        optionResult.innerHTML = `
+    const optionResult = document.createElement("div");
+    optionResult.className = "option-result";
+    optionResult.innerHTML = `
         <span class="option-text">${option.text}</span>
         <div class="bar-container">
             <div class="bar" style="width: ${barWidth}"></div>
         </div>
         <span class="percentage">${percentage}%</span>
         `;
-        result.appendChild(optionResult);
-    })
+    result.appendChild(optionResult);
+  });
 }
 
 function submitVote() {
-    const selectedOption = document.querySelector('input[name="poll"]:checked');
+  const selectedOption = document.querySelector('input[name="poll"]:checked');
 
-    if(!selectedOption) {
-        alert("Please select an option");
-        return;
-    }
+  if (!selectedOption) {
+    alert("Please select an option");
+    return;
+  }
 
-    const optionId = selectedOption.value;
-    const selectedOptionObj = options.find((option) => option.id === optionId);
+  const optionId = selectedOption.value;
+  const selectedOptionObj = options.find((option) => option.id === optionId);
 
-    if (selectedOptionObj) {
-        selectedOptionObj.votes++;
-        displayResult();
-    }
+  if (selectedOptionObj) {
+    selectedOptionObj.votes++;
+    displayResult();
+  }
 }
 
 displayResult();
