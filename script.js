@@ -28,7 +28,7 @@ function displayResult() {
     const optionResult = document.createElement("div");
     optionResult.className = "option-result";
     optionResult.innerHTML = `
-        <span class="option-text">${option.text}</span>
+        <div class="option-text">${option.text}</div>
         <div class="bar-container">
             <div class="bar" style="width: ${barWidth}"></div>
         </div>

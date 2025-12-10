@@ -76,7 +76,6 @@ button:hover {
 /* Result Layout */
 #result {
   margin-top: 20px;
-  width: 500px;
 }
 
 /* Each result row */
@@ -90,7 +89,6 @@ button:hover {
 /* Option label */
 .option-text {
   width: 100px;
-  text-align: left;
 }
 
 /* Progress Bar */
@@ -112,5 +110,16 @@ button:hover {
 .percentage {
   font-size: 14px;
   width: 60px;
-  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 80%;
+    margin: 0 20px;
+  }
+
+  .option-result {
+    flex-direction: column;
+    /* justify-content: center; */
+  }
 }
